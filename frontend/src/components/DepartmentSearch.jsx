@@ -1,4 +1,4 @@
-function EmployeeSearch({
+function DepartmentSearch({
   searchTerm,
   setSearchTerm,
 }) {
@@ -6,12 +6,11 @@ function EmployeeSearch({
     <div
       style={{
         marginBottom: "20px",
-        textAlign: "center",
       }}
     >
       <input
         type="text"
-        placeholder="Search employee..."
+        placeholder="Search department..."
         value={searchTerm}
         onChange={(e) =>
           setSearchTerm(
@@ -22,14 +21,11 @@ function EmployeeSearch({
           width: "350px",
           padding: "12px",
           borderRadius: "8px",
-          border:
-            "1px solid #22c55e",
-          background: "#0f2f23",
-          color: "white",
+          border: "1px solid #ccc",
         }}
       />
     </div>
   );
 }
 
-export default EmployeeSearch;
+export default DepartmentSearch;

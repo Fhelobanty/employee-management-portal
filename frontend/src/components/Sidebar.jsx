@@ -5,43 +5,66 @@ function Sidebar() {
     <div
       style={{
         width: "250px",
-        height: "100vh",
-        backgroundColor: "#1e293b",
+        minHeight: "100vh",
+        background: "#0b2e22",
         color: "white",
-        padding: "20px",
+        padding: "25px",
+        borderRight: "1px solid #14532d",
       }}
     >
-      <h2>EMP Portal</h2>
+      <h2
+        style={{
+          marginBottom: "40px",
+          color: "#4ade80",
+        }}
+      >
+        EMP Portal
+      </h2>
 
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        <li style={{ marginBottom: "15px" }}>
-          <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+      <ul
+        style={{
+          listStyle: "none",
+        }}
+      >
+        <li style={{ marginBottom: "20px" }}>
+          <Link
+            to="/"
+            style={{
+              color: "white",
+            }}
+          >
             Dashboard
           </Link>
         </li>
 
-        <li style={{ marginBottom: "15px" }}>
+        <li style={{ marginBottom: "20px" }}>
           <Link
             to="/employees"
-            style={{ color: "white", textDecoration: "none" }}
+            style={{
+              color: "white",
+            }}
           >
             Employees
           </Link>
         </li>
 
-        <li style={{ marginBottom: "15px" }}>
+        <li style={{ marginBottom: "20px" }}>
           <Link
             to="/departments"
-            style={{ color: "white", textDecoration: "none" }}
+            style={{
+              color: "white",
+            }}
           >
             Departments
           </Link>
         </li>
 
-        <li style={{ marginBottom: "15px" }}>
+        <li style={{ marginBottom: "20px" }}>
           <Link
             to="/reports"
-            style={{ color: "white", textDecoration: "none" }}
+            style={{
+              color: "white",
+            }}
           >
             Reports
           </Link>
@@ -50,7 +73,9 @@ function Sidebar() {
         <li>
           <Link
             to="/settings"
-            style={{ color: "white", textDecoration: "none" }}
+            style={{
+              color: "white",
+            }}
           >
             Settings
           </Link>

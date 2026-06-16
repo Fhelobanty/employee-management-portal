@@ -1,55 +1,87 @@
+import { useEffect, useState } from "react";
+
 import Sidebar from "../components/Sidebar";
+import DashboardCards from "../components/DashboardCards";
+import EmployeeAnalytics from "../components/EmployeeAnalytics";
 
 function Dashboard() {
+  const [employees, setEmployees] =
+    useState([]);
+
+  const [departments, setDepartments] =
+    useState([]);
+
+  useEffect(() => {
+    loadEmployees();
+    loadDepartments();
+  }, []);
+
+  async function loadEmployees() {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/employees"
+      );
+
+      const data =
+        await response.json();
+
+      setEmployees(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function loadDepartments() {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/departments"
+      );
+
+      const data =
+        await response.json();
+
+      setDepartments(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div style={{ display: "flex" }}>
       <Sidebar />
 
-      <div style={{ padding: "30px", flex: 1 }}>
-        <h1>Employee Management Portal</h1>
-
-        <h2>Dashboard Overview</h2>
-
-        <div
+      <div
+        style={{
+          padding: "30px",
+          flex: 1,
+          backgroundColor: "#f0fdf4",
+          minHeight: "100vh",
+        }}
+      >
+        <h1
           style={{
-            display: "flex",
-            gap: "20px",
-            marginTop: "20px",
+            color: "#14532d",
           }}
         >
-          <div
-            style={{
-              padding: "20px",
-              border: "1px solid #ddd",
-              borderRadius: "10px",
-            }}
-          >
-            <h3>Total Employees</h3>
-            <p>120</p>
-          </div>
+          Employee Management Portal
+        </h1>
 
-          <div
-            style={{
-              padding: "20px",
-              border: "1px solid #ddd",
-              borderRadius: "10px",
-            }}
-          >
-            <h3>Departments</h3>
-            <p>8</p>
-          </div>
+        <h2
+          style={{
+            color: "#166534",
+          }}
+        >
+          Dashboard Overview
+        </h2>
 
-          <div
-            style={{
-              padding: "20px",
-              border: "1px solid #ddd",
-              borderRadius: "10px",
-            }}
-          >
-            <h3>Projects</h3>
-            <p>15</p>
-          </div>
-        </div>
+        <DashboardCards
+          employees={employees}
+          departments={departments}
+        />
+
+        <EmployeeAnalytics
+          employees={employees}
+        />
       </div>
     </div>
   );
