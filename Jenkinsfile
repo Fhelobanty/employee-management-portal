@@ -1,34 +1,37 @@
 pipeline {
-    agent any
+agent any
 
-    stages {
+```
+stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
+    stage('Checkout') {
+        steps {
+            checkout scm
         }
+    }
 
-        stage('Build Backend') {
-            steps {
-                dir('backend') {
-                    bat 'npm install'
-                }
-            }
-        }
-
-        stage('Build Frontend') {
-            steps {
-                dir('frontend') {
-                    bat 'npm install'
-                }
-            }
-        }
-
-        stage('Docker Validation') {
-            steps {
-                bat 'docker --version'
+    stage('Build Backend') {
+        steps {
+            dir('backend') {
+                sh 'npm install'
             }
         }
     }
+
+    stage('Build Frontend') {
+        steps {
+            dir('frontend') {
+                sh 'npm install'
+            }
+        }
+    }
+
+    stage('Docker Validation') {
+        steps {
+            sh 'docker --version'
+        }
+    }
+}
+```
+
 }
