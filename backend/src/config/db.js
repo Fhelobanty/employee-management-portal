@@ -12,4 +12,14 @@ const pool = new Pool({
   },
 });
 
+pool
+  .query("SELECT NOW()")
+  .then(() => {
+    console.log("DATABASE CONNECTED SUCCESSFULLY");
+  })
+  .catch((err) => {
+    console.error("DATABASE CONNECTION FAILED");
+    console.error(err);
+  });
+
 module.exports = pool;
