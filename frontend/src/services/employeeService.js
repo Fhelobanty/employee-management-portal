@@ -1,6 +1,7 @@
+import API_URL from "./api";
 export async function getEmployees() {
   const response = await fetch(
-    "http://localhost:5000/api/employees"
+    `${API_URL}/api/employees`
   );
 
   return response.json();

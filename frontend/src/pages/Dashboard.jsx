@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Sidebar from "../components/Sidebar";
+import API_URL from "../services/api";
 import DashboardCards from "../components/DashboardCards";
 import EmployeeAnalytics from "../components/EmployeeAnalytics";
 
@@ -19,7 +20,7 @@ function Dashboard() {
   async function loadEmployees() {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/employees"
+        `${API_URL}/api/employees`
       );
 
       const data =
@@ -34,7 +35,7 @@ function Dashboard() {
   async function loadDepartments() {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/departments"
+        `${API_URL}/api/departments`
       );
 
       const data =

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import API_URL from "../services/api";
 function AddEmployeeForm() {
   const [departments, setDepartments] =
     useState([]);
@@ -19,7 +20,7 @@ function AddEmployeeForm() {
   async function loadDepartments() {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/departments"
+        `${API_URL}/api/departments`
       );
 
       const data =
@@ -46,16 +47,15 @@ function AddEmployeeForm() {
     event.preventDefault();
 
     const response = await fetch(
-      "http://localhost:5000/api/employees",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type":
-            "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    );
+  `${API_URL}/api/employees`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  }
+);
 
     if (response.ok) {
       alert(

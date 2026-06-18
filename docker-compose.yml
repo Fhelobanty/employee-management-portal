@@ -1,14 +1,43 @@
 services:
+
+  postgres:
+    image: postgres:16
+    container_name: employee-postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: employee_db
+    ports:
+      - "5432:5432"
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d employee_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+
   backend:
     build:
       context: ./backend
-    container_name: employee-backend-compose
+    container_name: employee-backend
     ports:
       - "5000:5000"
 
-  frontend:
-    build:
-      context: ./frontend
-    container_name: employee-frontend-compose
-    ports:
-      - "5173:5173"
+    environment:
+      DB_USER: admin
+      DB_PASSWORD: password
+      DB_NAME: employee_db
+      DB_HOST: postgres
+      DB_PORT: 5432
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+volumes:
+  postgres-data:

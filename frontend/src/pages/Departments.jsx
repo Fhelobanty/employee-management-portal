@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Sidebar from "../components/Sidebar";
+import API_URL from "../services/api";
 import AddDepartmentForm from "../components/AddDepartmentForm";
 import DepartmentCards from "../components/DepartmentCards";
 import DepartmentSearch from "../components/DepartmentSearch";
@@ -18,7 +19,7 @@ function Departments() {
 
   async function loadDepartments() {
     const response = await fetch(
-      "http://localhost:5000/api/departments"
+      `${API_URL}/api/departments`
     );
 
     const data = await response.json();

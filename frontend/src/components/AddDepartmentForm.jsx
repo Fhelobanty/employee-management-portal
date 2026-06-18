@@ -1,8 +1,8 @@
 import { useState } from "react";
+import API_URL from "../services/api";
 
 function AddDepartmentForm({ onDepartmentAdded }) {
-  const [departmentName, setDepartmentName] =
-    useState("");
+  const [departmentName, setDepartmentName] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -12,12 +12,11 @@ function AddDepartmentForm({ onDepartmentAdded }) {
     }
 
     const response = await fetch(
-      "http://localhost:5000/api/departments",
+      `${API_URL}/api/departments`,
       {
         method: "POST",
         headers: {
-          "Content-Type":
-            "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: departmentName,
@@ -28,7 +27,9 @@ function AddDepartmentForm({ onDepartmentAdded }) {
     if (response.ok) {
       setDepartmentName("");
 
-      onDepartmentAdded();
+      if (onDepartmentAdded) {
+        onDepartmentAdded();
+      }
     }
   }
 

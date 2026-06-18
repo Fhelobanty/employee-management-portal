@@ -5,13 +5,11 @@ import EmployeeSearch from "../components/EmployeeSearch";
 import EmployeeTable from "../components/EmployeeTable";
 import AddEmployeeForm from "../components/AddEmployeeForm";
 import DashboardCards from "../components/DashboardCards";
+import API_URL from "../services/api";
 
 function Employees() {
-  const [employees, setEmployees] =
-    useState([]);
-
-  const [searchTerm, setSearchTerm] =
-    useState("");
+  const [employees, setEmployees] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchEmployees();
@@ -20,11 +18,10 @@ function Employees() {
   async function fetchEmployees() {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/employees"
+        `${API_URL}/api/employees`
       );
 
-      const data =
-        await response.json();
+      const data = await response.json();
 
       setEmployees(data);
     } catch (error) {
@@ -36,16 +33,15 @@ function Employees() {
   }
 
   async function deleteEmployee(id) {
-    const confirmed =
-      window.confirm(
-        "Delete this employee?"
-      );
+    const confirmed = window.confirm(
+      "Delete this employee?"
+    );
 
     if (!confirmed) return;
 
     try {
       await fetch(
-        `http://localhost:5000/api/employees/${id}`,
+        `${API_URL}/api/employees/${id}`,
         {
           method: "DELETE",
         }
@@ -60,25 +56,18 @@ function Employees() {
     }
   }
 
-  const filteredEmployees =
-    employees.filter(
-      (employee) =>
-        employee.name
-          .toLowerCase()
-          .includes(
-            searchTerm.toLowerCase()
-          ) ||
-        employee.department
-          .toLowerCase()
-          .includes(
-            searchTerm.toLowerCase()
-          ) ||
-        employee.position
-          .toLowerCase()
-          .includes(
-            searchTerm.toLowerCase()
-          )
-    );
+  const filteredEmployees = employees.filter(
+    (employee) =>
+      employee.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      employee.department
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      employee.position
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div style={{ display: "flex" }}>
@@ -104,20 +93,14 @@ function Employees() {
 
         <EmployeeSearch
           searchTerm={searchTerm}
-          setSearchTerm={
-            setSearchTerm
-          }
+          setSearchTerm={setSearchTerm}
         />
 
         <AddEmployeeForm />
 
         <EmployeeTable
-          employees={
-            filteredEmployees
-          }
-          onDelete={
-            deleteEmployee
-          }
+          employees={filteredEmployees}
+          onDelete={deleteEmployee}
         />
       </div>
     </div>

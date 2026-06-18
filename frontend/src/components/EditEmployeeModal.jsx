@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import API_URL from "../services/api";
 function EditEmployeeModal({
   employee,
   onClose,
@@ -25,7 +26,7 @@ function EditEmployeeModal({
   async function loadDepartments() {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/departments"
+        `${API_URL}/api/departments`
       );
 
       const data =
@@ -52,7 +53,7 @@ function EditEmployeeModal({
     event.preventDefault();
 
     await fetch(
-      `http://localhost:5000/api/employees/${employee.id}`,
+      `${API_URL}/api/employees/${employee.id}`,
       {
         method: "PUT",
         headers: {
