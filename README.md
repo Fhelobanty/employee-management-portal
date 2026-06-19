@@ -361,6 +361,11 @@ This project provided hands-on experience with:
 
 # Screenshots
 
+## Architecture
+
+<img width="1536" height="1024" alt="clean" src="https://github.com/user-attachments/assets/5348329e-828d-4aca-b0f0-e3244365808b" />
+
+---
 
 ## Amazon ECR Repositories
 
